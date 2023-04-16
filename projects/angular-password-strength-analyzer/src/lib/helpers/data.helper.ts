@@ -1,13 +1,23 @@
 export const passwordWeightDefaultText = {
-  tooShort: 'Too short',
+  empty: 'empty',
   weak: 'Weak',
   good: 'Good',
   excellent: 'Excellent',
 }
 
 export const defaultConfig = [
-  { max: 0, text: passwordWeightDefaultText.tooShort },
-  { min: 0, max: 34, text: passwordWeightDefaultText.weak },
-  { min: 34, max: 67, text: passwordWeightDefaultText.good },
-  { min: 67, text: passwordWeightDefaultText.excellent },
+  { max: 0, text: passwordWeightDefaultText.empty },
+  { min: 1, max: 34, text: passwordWeightDefaultText.weak },
+  { min: 35, max: 67, text: passwordWeightDefaultText.good },
+  { min: 68, text: passwordWeightDefaultText.excellent },
 ]
+
+export const defaultAnalyzerConfig = {
+  isActiveOptionCountDigits: true,
+  isActiveOptionCountSpecialChars: true,
+  isActiveOptionHasUpperCaseAndLowerCase: true,
+  isActiveOptionHasLettersAndDigits: true,
+  isActiveOptionHasSpecialCharsAndDigits: true,
+  isActiveOptionHasLettersAndSpecialChars: true,
+  isActiveOptionIsAllLettersOrAllDigits: true,
+}

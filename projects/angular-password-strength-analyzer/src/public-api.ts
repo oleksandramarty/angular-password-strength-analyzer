@@ -3,3 +3,4 @@
  */
 
 export * from './lib/angular-password-strength-analyzer.module';
+export * from './lib/helpers/password.helper'
