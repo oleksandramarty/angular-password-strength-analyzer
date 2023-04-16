@@ -52,6 +52,9 @@ checkPasswordStrength(): void {
 - If the password contains both symbols and digits
 - If the password contains both letters and symbols
 - If the password consists only of letters or only of digits
+```ts
+NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyze` function
+```
 
 | Key               | Type                       | Optional | Default value       |
 |-------------------|----------------------------|----------|---------------------|
@@ -69,6 +72,8 @@ checkPasswordStrength(): void {
 - If the password weight is greater than or equal to 68, then it is "excellent"
 ```ts
 NOTE: These criteria can be changed by specifying `options` in `pwdWeightAnalyzeWithTitle` function
+
+NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyzeWithTitle` function
 ```
 
 | Key               | Type                         | Optional | Default value       |
