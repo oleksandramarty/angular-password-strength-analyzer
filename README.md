@@ -1,27 +1,95 @@
-# AngularPasswordStrengthAnalyzer
+## Setting up in `module's imports`
+```ts
+AngularPasswordStrengthAnalyzerModule
+```
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+## Usage `Password analyzer` in `ts`
+```ts
+import {pwdWeightAnalyze, pwdWeightAnalyzeWithTitle} from "angular-password-strength-analyzer";
 
-## Development server
+...
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+public password: string | null | undefined;
+public passwordWeight: number | null | undefined;
+public passwordStrength: string | null | undefined;
+public passwordStrengthCustom: string | null | undefined;
+public passwordWeightCustom: number | null | undefined;
 
-## Code scaffolding
+...
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+checkPasswordStrength(): void {
+  this.passwordWeight = pwdWeightAnalyze(this.password);
+  this.passwordWeightCustom = pwdWeightAnalyze(this.password, 6);
+  this.passwordStrength = pwdWeightAnalyzeWithTitle(this.password);
+  this.passwordStrengthCustom = pwdWeightAnalyzeWithTitle(this.password, 6, [
+    { max: 0, text: 'your text 1' },
+    { min: 0, max: 30, text: 'your text 2' },
+    { min: 30, max: 60, text: 'your text 3' },
+    { min: 60, text: 'your text 4' },
+  ]);
+}
+```
 
-## Build
+## Usage `Password analyzer` in `html`
+```html
+<input 
+  type="password" 
+  [(ngModel)]="password" 
+  (ngModelChange)="checkPasswordStrength()">
+<p>Weight: {{passwordWeight}}</p>
+<p>Strength is: {{passwordStrength}}</p>
+<p>Custom Weight is: {{passwordWeightCustom}}</p>
+<p>Custom Strength is: {{passwordStrengthCustom}}</p>
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage `pwdWeightAnalyze` function
 
-## Running unit tests
+| Key               | Type                       | Optional | Default value       |
+|-------------------|----------------------------|----------|---------------------|
+| `pwd`             | `string`                   | `no`     | `N/A`               |
+| `minLength`       | `number`                   | `yes`    | `8`                 |
+| `analyzerOptions` | `IPasswordAnalyzerOptions` | `yes`    | `default`           |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage `pwdWeightAnalyzeWithTitle` function
 
-## Running end-to-end tests
+| Key               | Type                         | Optional | Default value       |
+|-------------------|------------------------------|----------|---------------------|
+| `pwd`             | `string`                     | `no`     | `N/A`               |
+| `minLength`       | `number`                     | `yes`    | `8`                 |
+| `options`         | `IPasswordStrengthOptions[]` | `yes`    | `default`           |
+| `analyzerOptions` | `IPasswordAnalyzerOptions`   | `yes`    | `default`           |
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## `IPasswordAnalyzerOptions` model
 
-## Further help
+| Key                                       | Type      | Optional  | Default value |
+|-------------------------------------------|-----------|-----------|---------------|
+| `isActiveOptionCountDigits`               | `boolean` | `yes`     | `true`        |
+| `isActiveOptionCountSpecialChars`         | `boolean` | `yes`     | `true`        |
+| `isActiveOptionHasUpperCaseAndLowerCase`  | `boolean` | `yes`     | `true`        |
+| `isActiveOptionHasLettersAndDigits`       | `boolean` | `yes`     | `true`        |
+| `isActiveOptionHasSpecialCharsAndDigits`  | `boolean` | `yes`     | `true`        |
+| `isActiveOptionHasLettersAndSpecialChars` | `boolean` | `yes`     | `true`        |
+| `isActiveOptionIsAllLettersOrAllDigits`   | `boolean` | `yes`     | `true`        |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## `IPasswordStrengthOptions` model
+
+| Key    | Type      | Optional | Default value  |
+|--------|-----------|----------|----------------|
+| `min`  | `boolean` | `yes`    | `N/A`          |
+| `max`  | `boolean` | `yes`    | `N/A`          |
+| `text` | `boolean` | `no`     | `N/A`          |
+
+## Default model for `IPasswordStrengthOptions[]`
+```ts
+  [
+    { max: 0, text: 'empty' },
+    { min: 1, max: 34, text: 'weak' },
+    { min: 35, max: 67, text: 'good' },
+    { min: 68, text: 'excellent' },
+  ]
+```
+
+
+
+## About
+For password handling you can use ngModel, rxjs etc.
