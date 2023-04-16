@@ -32,9 +32,9 @@ checkPasswordStrength(): void {
 
 ## Usage `Password analyzer` in `html`
 ```html
-<input 
-  type="password" 
-  [(ngModel)]="password" 
+<input
+  type="password"
+  [(ngModel)]="password"
   (ngModelChange)="checkPasswordStrength()">
 <p>Weight: {{passwordWeight}}</p>
 <p>Strength is: {{passwordStrength}}</p>
@@ -52,6 +52,9 @@ checkPasswordStrength(): void {
 - If the password contains both symbols and digits
 - If the password contains both letters and symbols
 - If the password consists only of letters or only of digits
+```ts
+NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyze` function
+```
 
 | Key               | Type                       | Optional | Default value       |
 |-------------------|----------------------------|----------|---------------------|
@@ -69,6 +72,8 @@ checkPasswordStrength(): void {
 - If the password weight is greater than or equal to 68, then it is "excellent"
 ```ts
 NOTE: These criteria can be changed by specifying `options` in `pwdWeightAnalyzeWithTitle` function
+
+NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyzeWithTitle` function
 ```
 
 | Key               | Type                         | Optional | Default value       |
@@ -102,11 +107,11 @@ NOTE: These criteria can be changed by specifying `options` in `pwdWeightAnalyze
 ## Default model for `IPasswordStrengthOptions[]`
 ```ts
   [
-    { max: 0, text: 'empty' },
-    { min: 1, max: 34, text: 'weak' },
-    { min: 35, max: 67, text: 'good' },
-    { min: 68, text: 'excellent' },
-  ]
+  { max: 0, text: 'empty' },
+  { min: 1, max: 34, text: 'weak' },
+  { min: 35, max: 67, text: 'good' },
+  { min: 68, text: 'excellent' },
+]
 ```
 
 
