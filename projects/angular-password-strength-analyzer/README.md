@@ -43,14 +43,33 @@ checkPasswordStrength(): void {
 ```
 
 ## Usage `pwdWeightAnalyze` function
+#### This is a TypeScript function that analyzes the strength of a password based on certain criteria and returns a score.
+### Criterias
+- If the password contains at least 3 digits
+- If the password contains at least 2 symbols
+- If the password contains both upper and lowercase letters
+- If the password contains both letters and digits
+- If the password contains both symbols and digits
+- If the password contains both letters and symbols
+- If the password consists only of letters or only of digits
 
 | Key               | Type                       | Optional | Default value       |
 |-------------------|----------------------------|----------|---------------------|
 | `pwd`             | `string`                   | `no`     | `N/A`               |
 | `minLength`       | `number`                   | `yes`    | `8`                 |
 | `analyzerOptions` | `IPasswordAnalyzerOptions` | `yes`    | `default`           |
+### Output value is `number` - password's complexity
 
 ## Usage `pwdWeightAnalyzeWithTitle` function
+#### This is a TypeScript function that analyzes the strength of a password based on certain criteria and returns a score expressed in words.
+### Criterias
+- If the password weight is 0, then it is "empty"
+- If the password weight is greater than 1 and less than 34, then it is "weak"
+- If the password weight is greater than or equal to 35 and less than 67, then it is "good".
+- If the password weight is greater than or equal to 68, then it is "excellent"
+```ts
+NOTE: These criteria can be changed by specifying `options` in `pwdWeightAnalyzeWithTitle` function
+```
 
 | Key               | Type                         | Optional | Default value       |
 |-------------------|------------------------------|----------|---------------------|
@@ -58,6 +77,7 @@ checkPasswordStrength(): void {
 | `minLength`       | `number`                     | `yes`    | `8`                 |
 | `options`         | `IPasswordStrengthOptions[]` | `yes`    | `default`           |
 | `analyzerOptions` | `IPasswordAnalyzerOptions`   | `yes`    | `default`           |
+### Output value is `string` - password's complexity's title
 
 ## `IPasswordAnalyzerOptions` model
 
