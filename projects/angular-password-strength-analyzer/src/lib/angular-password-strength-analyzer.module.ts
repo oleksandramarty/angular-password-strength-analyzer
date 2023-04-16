@@ -1,16 +1,12 @@
-import { NgModule } from '@angular/core';
-import { AngularPasswordStrengthAnalyzerComponent } from './angular-password-strength-analyzer.component';
-
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-  declarations: [
-    AngularPasswordStrengthAnalyzerComponent
-  ],
+  declarations: [],
   imports: [
+    CommonModule,
   ],
-  exports: [
-    AngularPasswordStrengthAnalyzerComponent
-  ]
+  exports: []
 })
-export class AngularPasswordStrengthAnalyzerModule { }
+
+export class AngularPasswordStrengthAnalyzerModule {}
