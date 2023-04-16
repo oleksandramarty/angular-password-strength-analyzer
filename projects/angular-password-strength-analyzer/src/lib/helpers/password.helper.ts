@@ -29,7 +29,7 @@ export function pwdWeightAnalyze(pwd: string | null | undefined, minLength: numb
   // If the password consists of only letters or only numbers, then reduce the weight of the password by 10.
   weight = isAllLettersOrAllDigits(pwd) ? weight - getReduce(analyzerOptions.isActiveOptionIsAllLettersOrAllDigits ?? defaultAnalyzerConfig.isActiveOptionIsAllLettersOrAllDigits, 10) : weight + 10;
 
-  return weight > 100 ? 100 : weight < 0 ? (pwd.length > 0 ? 1 : 0) : weight;
+  return weight > 100 ? 100 : weight < 0 ? (pwd.length > 0 ? 2 : 0) : weight;
 }
 
 function getReduce(isActive: boolean, value: number): number {

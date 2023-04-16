@@ -42,6 +42,10 @@ checkPasswordStrength(): void {
 <p>Custom Strength is: {{passwordStrengthCustom}}</p>
 ```
 
+```ts
+ NOTE: For password handling you can use `ngModel`, `rxjs` etc.
+```
+
 ## Usage `pwdWeightAnalyze` function
 #### This is a TypeScript function that analyzes the strength of a password based on certain criteria and returns a score.
 ### Criterias
@@ -52,8 +56,8 @@ checkPasswordStrength(): void {
 - If the password contains both symbols and digits
 - If the password contains both letters and symbols
 - If the password consists only of letters or only of digits
-```ts
-NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyze` function
+```text
+NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyze` and `pwdWeightAnalyzeWithTitle` functions
 ```
 
 | Key               | Type                       | Optional | Default value       |
@@ -70,10 +74,8 @@ NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeigh
 - If the password weight is greater than 1 and less than 34, then it is "weak"
 - If the password weight is greater than or equal to 35 and less than 67, then it is "good".
 - If the password weight is greater than or equal to 68, then it is "excellent"
-```ts
+```text
 NOTE: These criteria can be changed by specifying `options` in `pwdWeightAnalyzeWithTitle` function
-
-NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeightAnalyzeWithTitle` function
 ```
 
 | Key               | Type                         | Optional | Default value       |
@@ -106,15 +108,32 @@ NOTE: These criteria can be changed by specifying `analyzerOptions` in `pwdWeigh
 
 ## Default model for `IPasswordStrengthOptions[]`
 ```ts
-  [
-  { max: 0, text: 'empty' },
-  { min: 1, max: 34, text: 'weak' },
-  { min: 35, max: 67, text: 'good' },
-  { min: 68, text: 'excellent' },
+[
+  { max: 0, text: 'empty' }, // don't remove it 
+  { min: 1, max: 1, text: 'too short' }, // don't remove it 
+  { min: 2, max: 34, text: 'weak' }, // your values
+  { min: 35, max: 67, text: 'good' }, // your values
+  { min: 68, text: 'excellent' }, // your values
 ]
 ```
+```text
+NOTE: For empty password IPasswordStrengthOptions should be with max = 0
+```
+```text
+NOTE: For a password of insufficient length IPasswordStrengthOptions should be with min = 1 max = 1
+```
 
-
-
-## About
-For password handling you can use ngModel, rxjs etc.
+## Examples
+| Password                         | pwdWeightAnalyze | pwdWeightAnalyzeWithTitle | Description  |
+|----------------------------------|------------------|---------------------------|--------------|
+| `mz.5J#[t`                       | `97`             | `excellent`               |              |
+| `PjCvz2Qf`                       | `27`             | `weak`                    |              |
+| `p@$$word`                       | `16`             | `weak`                    |              |
+| `1234567890`                     | `2`              | `weak`                    |              |
+| `doggiesRcute!`                  | `46`             | `good`                    |              |
+| `00000000000000000000000000000A` | `3`              | `weak`                    |              |
+| `0`                              | `1`              | `too short`               | `minLen = 2` |
+| `00`                             | `2`              | `weak`                    | `minLen = 2` |
+| `000`                            | `2`              | `weak`                    | `minLen = 2` |
+| `0000`                           | `2`              | `weak`                    | `minLen = 2` |
+| `00000`                          | `2`              | `weak`                    | `minLen = 2` |
