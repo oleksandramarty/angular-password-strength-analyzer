@@ -1,5 +1,7 @@
 ## Setting up in `module's imports`
 ```ts
+import {AngularPasswordStrengthAnalyzerModule} from "angular-password-strength-analyzer";
+
 AngularPasswordStrengthAnalyzerModule
 ```
 
@@ -7,15 +9,11 @@ AngularPasswordStrengthAnalyzerModule
 ```ts
 import {pwdWeightAnalyze, pwdWeightAnalyzeWithTitle} from "angular-password-strength-analyzer";
 
-...
-
 public password: string | null | undefined;
 public passwordWeight: number | null | undefined;
 public passwordStrength: string | null | undefined;
 public passwordStrengthCustom: string | null | undefined;
 public passwordWeightCustom: number | null | undefined;
-
-...
 
 checkPasswordStrength(): void {
   this.passwordWeight = pwdWeightAnalyze(this.password);
